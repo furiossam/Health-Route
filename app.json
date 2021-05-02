@@ -1,0 +1,12 @@
+{
+  "name": "HealthRoutes",
+  "displayName": "HealthRoutes",
+  "expo": {
+    "name": "HealthRoutes",
+    "slug": "HealthRoutes",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
