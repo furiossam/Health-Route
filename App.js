@@ -6,9 +6,12 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
+        <View style={styles.containerHeader}>
+          <Text style={styles.loginTitle}>Faça Login no sistema HealthRoutes</Text>
+          <StatusBar style="auto" />
+        </View>
       </View>
+      
     );
   }
   
@@ -17,8 +20,21 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#333',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  containerHeader: {
+    marginTop: -600,
+    paddingTop: 20,
+    backgroundColor: '#237582',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loginTitle: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 50,
+    color: "#FFF"
+  }
 });
