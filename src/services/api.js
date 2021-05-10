@@ -1,14 +1,15 @@
 import { create } from "apisauce";
 
 // const baseURL = "http://localhost:8090"; // LOCAL
-const baseURL = "http://10.0.0.105:8090"; // PC LOCAL
+const baseURL = "http://10.0.0.100:8090"; // PC LOCAL
 // const baseURL = "http://192.168.15.9:8090"; // PC LOCAL
 
 let token = null;
+let isLoggedIn = false;
 
 const api = create({
   baseURL,
-  timeout: 300000, // 5 min,
+  timeout: 60000, // 1 min,
 });
 
 const requestTransform = (request) => {
@@ -41,13 +42,26 @@ const logout = () => {
 };
 
 const login = async (body) => {
+  // alert("TESTE api: " + body.username + "/" + body.password);
   logout();
-  return await api.post("/login", body);
+  console.log("API: ", body);
+  const response = await api.post("/login", body);
+  console.log("response: ", response);
+  // alert(response.ok);
+  if (response.ok) { 
+      isLoggedIn = true;
+  } else {
+      isLoggedIn = false;
+  }
+  // alert(response);
+  return response;
 };
 
-// const checkIfExists = async (barcode) => {
-//   return await api.get("/product/exists/" + barcode);
-// }
+const test = async (body) => {
+  console.log("API test: ", body);
+  const response =  await api.get("/teste");
+  console.log("response test: ", response);
+}
 
 // const saveProduct = async (data) => {
 //   return await api.post("/product", data);
@@ -94,8 +108,10 @@ const login = async (body) => {
 // }
 
 export default {
+  isLoggedIn,
   logout,
   login,
+  test,
 //   checkIfExists,
 //   saveProduct,
 //   savePriceProduct,
