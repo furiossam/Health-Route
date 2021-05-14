@@ -78,8 +78,8 @@ function createStyles(props) {
     },
     label: {
       textTransform: 'none',
-      fontFamily: 'Poppins Regular',
-      fontSize: 13,
+      fontFamily: 'Arial',
+      fontSize: 16,
       color: "white",
       marginLeft: props.icon ? 15 : 0,
     },

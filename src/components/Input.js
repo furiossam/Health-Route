@@ -104,7 +104,7 @@ function createStyles(props) {
     },
 
     input: {
-      fontSize: 12,
+      fontSize: 16,
       backgroundColor: "white",
       minHeight: 10,
     },
