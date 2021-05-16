@@ -109,7 +109,7 @@ function createStyles(props) {
       minHeight: 10,
     },
     errorText: {
-      fontSize: 11,
+      fontSize: 16,
       fontFamily: 'Poppins Light',
     },
     rightIcon: {

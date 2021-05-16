@@ -8,8 +8,15 @@ import { FormHolder } from "./src/FormConfig";
 
 export default class App extends Component {
 
+  constructor(props) {
+    super();
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
   render() {
-    if (api.isLoggedIn) {
+    if (this.state.isLoggedIn) {
       return (
         <Text>LOGOU!</Text>
       )
@@ -23,7 +30,10 @@ export default class App extends Component {
           <FormHolder
           onSubmit={(data) => {
             console.log("ON SUBMIT: ", data);
-            api.test(data);
+            let success = api.login(data);
+            this.setState({
+              isLoggedIn: success
+            })
           }}>
             <Input style={styles.input}
             name="username"
