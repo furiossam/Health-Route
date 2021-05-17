@@ -21,9 +21,6 @@ const naviMonitor = (response) => {
   const { status, headers } = response;
   if (status === 401) {
     logout();
-    // if (response.config.url !== "/login") {
-    //   navigate(paths.Landing);
-    // }
   }
 
   if (headers.authorization) {
@@ -40,12 +37,13 @@ const logout = () => {
   token = null;
 };
 
-const login = async (body) => {
+const login = async (body, setLoggedIn) => {
 
   logout();
   console.log("API: ", body);
   const response = await api.post("/login", body);
   console.log("response: ", response);
+  setLoggedIn(response.ok);
  
   return (response.ok);
 };
@@ -58,7 +56,6 @@ const test = async (body) => {
 
 
 export default {
-  isLoggedIn,
   logout,
   login,
   test,

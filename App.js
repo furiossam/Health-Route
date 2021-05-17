@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { ButtonContained, Input } from "./src/components";
 import api from "./src/services/api";
 import { FormHolder } from "./src/FormConfig";
+import Login from "./src/pages/Login";
 
 export default class App extends Component {
 
@@ -15,6 +16,15 @@ export default class App extends Component {
     }
   }
 
+  setLoggedIn = (success) => {
+    if (!success) {
+      alert("Usuário ou Senha Inválido!");
+    }
+    this.setState({
+      isLoggedIn: success
+    })
+  }
+
   render() {
     if (this.state.isLoggedIn) {
       return (
@@ -22,50 +32,12 @@ export default class App extends Component {
       )
     } else {
       return (
-        <View style={styles.container}>
-          <View style={styles.containerHeader}>
-            <Text style={styles.loginTitle}>Faça Login no sistema HealthRoutes</Text>
-            <StatusBar style="auto" />
-          </View>
-          <FormHolder
-          onSubmit={(data) => {
-            console.log("ON SUBMIT: ", data);
-            let success = api.login(data);
-            this.setState({
-              isLoggedIn: success
-            })
-          }}>
-            <Input style={styles.input}
-            name="username"
-            inputLabel="Usuário"
-            />
-            <Input
-            name="password"
-            inputLabel="Senha"
-            />
-            <ButtonContained type="submit"> LOGAR </ButtonContained>
-            {}
-            </FormHolder>
-        </View>
+        <Login 
+        setLoggedIn={this.setLoggedIn}
+        />
       );
     }
     
   }
   
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#237582',
-  },
-  containerHeader: {
-    paddingTop: 10,
-    backgroundColor: '#237582',
-  },
-  loginTitle: {
-    paddingTop: 60,
-     fontSize: 20,
-     margin: 50,
-  }
-});
