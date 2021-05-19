@@ -1,40 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { ButtonContained, Input } from "../components";
 import api from "../services/api";
 import { FormHolder } from "../FormConfig";
+import { ScrollView } from 'react-native';
 
-
-export default class Login extends Component {
+export default class UserSubmit extends Component {
 
     render() {
         return (
+            <ScrollView>
             <View style={styles.container}>
               <View style={styles.containerHeader}>
-                <Text style={styles.loginTitle}>Faça Login no sistema HealthRoutes</Text>
+                <Text style={styles.formTitle}>Cadastre seu usuário no sistema HealthRoutes</Text>
                 <StatusBar style="auto" />
               </View>
               <FormHolder
               onSubmit={(data) => {
                 console.log("ON SUBMIT: ", data);
-                api.login(data, this.props.setLoggedIn);
+                api.userSubmit(data, this.props.setRegister);
                 console.log("ON SUBMIT finish: ", data);
                 
               }}>
                 <Input style={styles.input}
-                name="username"
-                inputLabel="Usuário"
+                name="cpf"
+                inputLabel="cpf"
+                />
+                <Input
+                name="nome"
+                inputLabel="nome"
+                />
+                <Input
+                name="email"
+                inputLabel="email"
                 />
                 <Input
                 name="password"
-                inputLabel="Senha"
+                inputLabel="password"
                 />
-                <ButtonContained type="submit"> LOGAR </ButtonContained>
-                {}
+                <ButtonContained type="submit"> REGISTRAR </ButtonContained>
                 </FormHolder>
-                <ButtonContained onPress={() => {this.props.setRegister(true)}} > REGISTRAR </ButtonContained>
+                <ButtonContained onPress={() => {this.props.setRegister(false)}}> VOLTAR </ButtonContained>
             </View>
+            </ScrollView>
           );
     }
 
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
       paddingTop: 10,
       backgroundColor: '#237582',
     },
-    loginTitle: {
+    formTitle: {
       paddingTop: 60,
        fontSize: 20,
        margin: 50,

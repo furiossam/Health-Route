@@ -1,18 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { ButtonContained, Input } from "./src/components";
-import api from "./src/services/api";
-import { FormHolder } from "./src/FormConfig";
+import {  Text } from 'react-native';
 import Login from "./src/pages/Login";
+import UserSubmit from './src/pages/UserSubmit';
 
 export default class App extends Component {
 
   constructor(props) {
     super();
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      register: false
     }
   }
 
@@ -25,7 +22,23 @@ export default class App extends Component {
     })
   }
 
+  setRegister = (success) => {
+    console.log("register", success);
+    this.setState({
+      register: success
+    })
+  }
+
   render() {
+    console.log("RENDER APP: ", this.state);
+    if (this.state.register) {
+      return (
+        <UserSubmit
+        setRegister={this.setRegister}
+        />
+      );
+    }
+
     if (this.state.isLoggedIn) {
       return (
         <Text>LOGOU!</Text>
@@ -34,6 +47,7 @@ export default class App extends Component {
       return (
         <Login 
         setLoggedIn={this.setLoggedIn}
+        setRegister={this.setRegister}
         />
       );
     }

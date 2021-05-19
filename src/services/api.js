@@ -1,14 +1,14 @@
 import { create } from "apisauce";
 
 //const baseURL = "http://localhost:8090"; // LOCAL
-const baseURL = "http://10.0.0.101:8090"; // PC LOCAL
-// const baseURL = "http://192.168.15.9:8090"; // PC LOCAL
+const baseURL = "http://10.0.0.105:8090"; // PC LOCAL
+//const baseURL = "http://192.168.15.9:8090"; // PC LOCAL
 
 let token = null;
 
 const api = create({
   baseURL,
-  timeout: 60000, // 1 min,
+  timeout: 10000, // 10 segundos,
 });
 
 const requestTransform = (request) => {
@@ -54,10 +54,23 @@ const test = async (body) => {
   console.log("response test: ", response);
 }
 
+const userSubmit = async (body, setRegister) => {
+  console.log("API userSubmit: ", body);
+  const response = await api.post("/userSubmit", body);
+  console.log("response userSubmit: ", response);
+  if(response.ok){
+    alert("Usuário Cadastrado com sucesso");
+    setRegister(false);
+  }
+
+  return (response.ok)
+}
+
 
 export default {
   logout,
   login,
   test,
+  userSubmit,
 
 };
