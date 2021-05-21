@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {  Text } from 'react-native';
+import Home from './src/pages/Home';
 import Login from "./src/pages/Login";
 import UserSubmit from './src/pages/UserSubmit';
 
@@ -41,7 +42,7 @@ export default class App extends Component {
 
     if (this.state.isLoggedIn) {
       return (
-        <Text>LOGOU!</Text>
+        <Home/>
       )
     } else {
       return (

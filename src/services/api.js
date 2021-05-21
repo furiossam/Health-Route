@@ -66,11 +66,23 @@ const userSubmit = async (body, setRegister) => {
   return (response.ok)
 }
 
+const routeGenerated = async (vCapacity , timeWindow , setrouteEntered) => {
+  console.log("API generateRoute: ", {vCapacity , timeWindow});
+  const response = await api.get("/generateFirstGeneration?vCapacity="+vCapacity+"&timeWindow="+timeWindow);
+  console.log("response generateRoute: ", response);
+  if(response.ok){
+    setrouteEntered(true, response.data);
+    
+  }
+
+  return (response.ok)
+}
 
 export default {
   logout,
   login,
   test,
   userSubmit,
+  routeGenerated
 
 };
