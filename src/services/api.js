@@ -72,7 +72,8 @@ const routeGenerated = async (vCapacity , timeWindow , setrouteEntered) => {
   console.log("response generateRoute: ", response);
   if(response.ok){
     setrouteEntered(true, response.data);
-    
+  }else{
+    alert("Problema na Geração da rota, tente novamente!")
   }
 
   return (response.ok)
