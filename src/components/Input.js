@@ -73,8 +73,8 @@ class Input extends BaseFormValueItem {
             <TouchableRipple style={styles.rightIcon} onPress={icon.onPress}>
               <Icon
                 name={icon.name}
-                size={Metrics.getSize(18)}
-                color={error ? theme.colors.error : theme.colors.accent}
+                size={40}
+                // color={""}
               />
             </TouchableRipple>
           ) : null}
@@ -113,14 +113,14 @@ function createStyles(props) {
       fontFamily: 'Poppins Light',
     },
     rightIcon: {
-      width: 100,
-      height: 100,
-      top: 11,
+      width: 55,
+      height: 55,
+      top: 7,
       right: 2,
       position: 'absolute',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 1,
+      zIndex: 1
     },
   });
 }

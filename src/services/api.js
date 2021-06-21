@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 
 //const baseURL = "http://localhost:8090"; // LOCAL
-const baseURL = "http://10.0.0.105:8090"; // PC LOCAL
+const baseURL = "http://10.0.0.101:8090"; // PC LOCAL
 //const baseURL = "http://192.168.15.9:8090"; // PC LOCAL
 
 let token = null;
@@ -40,24 +40,18 @@ const logout = () => {
 const login = async (body, setLoggedIn) => {
 
   logout();
-  console.log("API: ", body);
   const response = await api.post("/login", body);
-  console.log("response: ", response);
   setLoggedIn(response.ok);
  
   return (response.ok);
 };
 
 const test = async (body) => {
-  console.log("API test: ", body);
   const response =  await api.get("/teste");
-  console.log("response test: ", response);
 }
 
 const userSubmit = async (body, setRegister) => {
-  console.log("API userSubmit: ", body);
   const response = await api.post("/userSubmit", body);
-  console.log("response userSubmit: ", response);
   if(response.ok){
     alert("Usuário Cadastrado com sucesso");
     setRegister(false);
@@ -67,13 +61,23 @@ const userSubmit = async (body, setRegister) => {
 }
 
 const routeGenerated = async (vCapacity , timeWindow , setrouteEntered) => {
-  console.log("API generateRoute: ", {vCapacity , timeWindow});
   const response = await api.get("/generateFirstGeneration?vCapacity="+vCapacity+"&timeWindow="+timeWindow);
-  console.log("response generateRoute: ", response);
-  if(response.ok){
+  if(response.ok && response.data != null){
     setrouteEntered(true, response.data);
   }else{
     alert("Problema na Geração da rota, tente novamente!")
+  }
+
+  return (response.ok)
+}
+
+const deliverMedicines = async (patientIds) => {
+  const response = await api.patch("/deliverMedicines", patientIds);
+  console.log("DELIVER MEDICINES: ", response);
+  if(response.ok){
+    return true;
+  }else{
+    alert("Problema na entrega dos remédios!")
   }
 
   return (response.ok)
@@ -84,6 +88,7 @@ export default {
   login,
   test,
   userSubmit,
-  routeGenerated
+  routeGenerated,
+  deliverMedicines
 
 };

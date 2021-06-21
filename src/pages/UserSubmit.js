@@ -18,9 +18,7 @@ export default class UserSubmit extends Component {
               </View>
               <FormHolder
               onSubmit={(data) => {
-                console.log("ON SUBMIT: ", data);
                 api.userSubmit(data, this.props.setRegister);
-                console.log("ON SUBMIT finish: ", data);
                 
               }}>
                 <Input style={styles.input}

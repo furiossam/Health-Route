@@ -24,14 +24,12 @@ export default class App extends Component {
   }
 
   setRegister = (success) => {
-    console.log("register", success);
     this.setState({
       register: success
     })
   }
 
   render() {
-    console.log("RENDER APP: ", this.state);
     if (this.state.register) {
       return (
         <UserSubmit

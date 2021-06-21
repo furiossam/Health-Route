@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { ButtonContained, Input } from "../components";
 import api from "../services/api";
 import { FormHolder } from "../FormConfig";
+import InputPassword from '../components/InputPassword';
 
 
 export default class Login extends Component {
@@ -17,16 +18,15 @@ export default class Login extends Component {
               </View>
               <FormHolder
               onSubmit={(data) => {
-                console.log("ON SUBMIT: ", data);
                 api.login(data, this.props.setLoggedIn);
-                console.log("ON SUBMIT finish: ", data);
                 
               }}>
                 <Input style={styles.input}
                 name="username"
                 inputLabel="Usuário"
+                keyboardType="numeric"
                 />
-                <Input
+                <InputPassword
                 name="password"
                 inputLabel="Senha"
                 />

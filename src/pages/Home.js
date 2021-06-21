@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomePresentation from './HomePresentation';
+import RoutePresentation from './RoutePresentation';
 
 
 export default class Home extends Component {
@@ -23,10 +24,22 @@ export default class Home extends Component {
         })
       }
 
+      goBackToHome = () => {
+        this.setState({
+          routeEntered : false,
+          routeData: null
+        })
+      }
+
     render() {
-        console.log("HOME DATA: ", this.state);
+        
         if(this.state.routeEntered){
-            return (<Text> Rota Gerada </Text>);
+            return (
+            <RoutePresentation 
+            data={this.state.routeData} 
+            goBackToHome={this.goBackToHome}
+            />
+            );
         }
 
         return (

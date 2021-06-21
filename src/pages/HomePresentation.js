@@ -18,18 +18,18 @@ export default class HomePresentation extends Component {
               </View>
               <FormHolder
               onSubmit={(data) => {
-                console.log("ON SUBMIT: ", data);
                 api.routeGenerated(data.vCapacity,data.timeWindow, this.props.setrouteEntered);
-                console.log("ON SUBMIT finish: ", data);
                 
               }}>
                 <Input style={styles.input}
                 name="timeWindow"
                 inputLabel="Tempo de Rota (em minutos) "
+                keyboardType="numeric"
                 />
                 <Input
                 name="vCapacity"
                 inputLabel="Capacidade do veículo"
+                keyboardType="numeric"
                 />
                 <ButtonContained type="submit"> Gerar Rota! </ButtonContained>
                 {}
